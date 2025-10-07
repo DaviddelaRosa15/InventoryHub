@@ -1,4 +1,6 @@
-﻿using InventoryHub.Infrastructure.Persistence.Contexts;
+﻿using InventoryHub.Core.Application.Interfaces.Repositories;
+using InventoryHub.Infrastructure.Persistence.Contexts;
+using InventoryHub.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +40,7 @@ namespace InventoryHub.Infrastructure.Persistence
             #endregion
 
             #region Repositories
+            services.AddTransient<IProductRepository, ProductRepository>();
 			#endregion
 		}
 	}
