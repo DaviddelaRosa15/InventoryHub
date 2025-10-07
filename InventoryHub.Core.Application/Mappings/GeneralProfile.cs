@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using InventoryHub.Core.Application.Features.Product.Queries.GetAll;
+using InventoryHub.Core.Application.Dtos.Product;
 using InventoryHub.Core.Domain.Entities;
 
 namespace InventoryHub.Core.Application.Mappings
@@ -9,7 +9,7 @@ namespace InventoryHub.Core.Application.Mappings
 		public GeneralProfile()
 		{
             #region Product
-            CreateMap<Product, GetAllProductQueryResponseChild>()
+            CreateMap<Product, ProductResponseDTO>()
                 .ReverseMap()
                 .ForMember(x => x.Inventory, opt => opt.Ignore())
                 .ForMember(x => x.InventoryMovements, opt => opt.Ignore())

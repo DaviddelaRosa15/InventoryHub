@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryHub.Core.Application.Dtos.Product;
 using InventoryHub.Core.Application.Interfaces.Repositories;
 using MediatR;
 
@@ -27,7 +28,7 @@ namespace InventoryHub.Core.Application.Features.Product.Queries.GetAll
                 GetAllProductQueryResponse result = new();
 
                 var getAlls = await _productRepository.GetAllAsync();
-                var products = _mapper.Map<List<GetAllProductQueryResponseChild>>(getAlls.OrderByDescending(x => x.Created).ToList());
+                var products = _mapper.Map<List<ProductResponseDTO>>(getAlls.OrderByDescending(x => x.Created).ToList());
 
                 result.Products = products;
 
