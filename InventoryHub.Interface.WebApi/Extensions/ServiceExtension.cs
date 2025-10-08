@@ -15,11 +15,11 @@ namespace InventoryHub.Interface.WebApi.Extensions
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Avalanche Business API",
+                    Title = "InventoryHub Business API",
                     Description = "This Api will be responsible for manage everything in the system",
                     Contact = new OpenApiContact
                     {
-                        Name = "Avalanche Business",
+                        Name = "InventoryHub Business",
                         Email = "arsavalanche@gmail.com"
                     }
                 });

@@ -9,7 +9,7 @@ namespace InventoryHub.Interface.WebApi.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Avalanche Business API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "InventoryHub Business API");
                 options.DefaultModelRendering(ModelRendering.Model);
             });
         }
