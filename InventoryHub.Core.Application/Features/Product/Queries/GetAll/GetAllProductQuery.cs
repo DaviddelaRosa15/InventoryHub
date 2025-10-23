@@ -29,6 +29,11 @@ namespace InventoryHub.Core.Application.Features.Product.Queries.GetAll
 
                 var getAlls = await _productRepository.GetAllAsync();
                 var products = _mapper.Map<List<ProductResponseDTO>>(getAlls.OrderByDescending(x => x.Created).ToList());
+                /*products.ForEach(product =>
+                {
+                    TimeZoneInfo localZone = TimeZoneInfo.Local;
+                    product.LastModified = TimeZoneInfo.ConvertTimeFromUtc((DateTime)product.LastModified, localZone);
+                });*/
 
                 result.Products = products;
 

@@ -36,6 +36,8 @@ namespace InventoryHub.Core.Application.Features.Product.Queries.GetById
                 }
 
                 var product = _mapper.Map<ProductResponseDTO>(getById);
+                //TimeZoneInfo localZone = TimeZoneInfo.Local;
+                //product.LastModified = TimeZoneInfo.ConvertTimeFromUtc((DateTime)getById.LastModified, localZone);
 
                 result.Product = product;
 
