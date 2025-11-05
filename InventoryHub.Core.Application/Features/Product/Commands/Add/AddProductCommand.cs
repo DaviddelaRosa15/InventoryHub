@@ -21,6 +21,11 @@ namespace InventoryHub.Core.Application.Features.Product.Command.Add
         [Required(ErrorMessage = "Debe ingresar el precio de venta")]
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio de venta debe ser mayor que cero")]
         public double SalePrice { get; set; }
+
+        [SwaggerParameter(Description = "Minimo de existencia")]
+        [Required(ErrorMessage = "Debe ingresar el minimo de existencia")]
+        [Range(1, int.MaxValue, ErrorMessage = "El mínimo debe ser mayor que cero")]
+        public int MinimumStock { get; set; }
     }
 
     public class AddProductCommandHandler : IRequestHandler<AddProductCommand, ProductDTO>

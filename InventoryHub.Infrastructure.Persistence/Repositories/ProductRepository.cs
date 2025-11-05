@@ -18,8 +18,8 @@ namespace InventoryHub.Infrastructure.Persistence.Repositories
             using var dbContext = _dbContext.CreateDbContext();
 
             await dbContext.Database.ExecuteSqlRawAsync(
-                "CALL sp_product_create({0}, {1}, {2}, {3}, {4})",
-                product.Id, product.Name, product.Description, product.SalePrice, product.CreatedBy);
+                "CALL sp_product_create({0}, {1}, {2}, {3}, {4}, {5})",
+                product.Id, product.Name, product.Description, product.SalePrice, product.MinimumStock, product.CreatedBy);
         }
 
         public async Task UpdateAsync(Product product)
@@ -27,8 +27,8 @@ namespace InventoryHub.Infrastructure.Persistence.Repositories
             using var dbContext = _dbContext.CreateDbContext();
 
             await dbContext.Database.ExecuteSqlRawAsync(
-                "CALL sp_product_update({0}, {1}, {2}, {3}, {4})",
-                product.Id, product.Name, product.Description, product.SalePrice, product.LastModifiedBy);
+                "CALL sp_product_update({0}, {1}, {2}, {3}, {4}, {5})",
+                product.Id, product.Name, product.Description, product.SalePrice, product.MinimumStock, product.LastModifiedBy);
         }
 
         public async Task DeleteAsync(string id)

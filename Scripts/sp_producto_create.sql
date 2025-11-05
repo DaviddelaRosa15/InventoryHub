@@ -3,17 +3,19 @@ CREATE OR REPLACE PROCEDURE sp_product_create(
     p_name TEXT,
     p_description TEXT,
     p_saleprice NUMERIC,
+    p_minimumstock INT,
     p_createdby TEXT
 )
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    INSERT INTO "Products" ("Id", "Name", "Description", "SalePrice", "Created", "CreatedBy")
+    INSERT INTO "Products" ("Id", "Name", "Description", "SalePrice", "MinimumStock", "Created", "CreatedBy")
     VALUES (
         p_id,
         p_name,
         p_description,
         p_saleprice,
+        p_minimumstock,
         NOW(),
         p_createdby
     );

@@ -17,6 +17,9 @@ namespace InventoryHub.Core.Application.Dtos.Product
         [SwaggerSchema(Description = "Precio de venta")]
         public double SalePrice { get; set; }
 
+        [SwaggerSchema(Description = "Minimo en stock")]
+        public int MinimumStock { get; set; }
+
         [SwaggerSchema(Description = "Fecha de creación")]
         public DateTime Created { get; set; }
 

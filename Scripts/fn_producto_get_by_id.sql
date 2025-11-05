@@ -6,6 +6,7 @@ RETURNS TABLE (
     "Name" TEXT,
     "Description" TEXT,
     "SalePrice" NUMERIC,
+    "MinimumStock" INT,
     "Created" TIMESTAMP,
     "CreatedBy" TEXT,
     "LastModified" TIMESTAMP,
@@ -20,6 +21,7 @@ BEGIN
         "Name",
         "Description",
         "SalePrice",
+        "MinimumStock" INT,
         "Created"::TIMESTAMP,          -- Cast explícito si la columna es TEXT
         "CreatedBy",
         "LastModified"::TIMESTAMP,     -- Cast explícito si la columna es TEXT
