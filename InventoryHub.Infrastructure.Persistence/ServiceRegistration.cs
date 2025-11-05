@@ -41,6 +41,7 @@ namespace InventoryHub.Infrastructure.Persistence
 
             #region Repositories
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IInventoryMovementRepository, InventoryMovementRepository>();
 			#endregion
 		}
 	}
