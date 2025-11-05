@@ -3,7 +3,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace InventoryHub.Core.Application.Dtos.InventoryMovement
 {
-    public class RegisterEntryDTO : ErrorDTO
+    public class RegisterMovementDTO : ErrorDTO
     {
         [SwaggerSchema(Description = "Identificador único del movimiento de entrada.")]
         public string Id { get; set; }
@@ -15,6 +15,6 @@ namespace InventoryHub.Core.Application.Dtos.InventoryMovement
         public int Quantity { get; set; }
 
         [SwaggerSchema(Description = "Fecha en la que se realizó la entrada de inventario.")]
-        public DateTime EntryDate { get; set; }
+        public DateTime MovementDate { get; set; }
     }
 }

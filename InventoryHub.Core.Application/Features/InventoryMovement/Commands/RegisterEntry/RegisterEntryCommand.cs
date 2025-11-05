@@ -8,19 +8,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventoryHub.Core.Application.Features.InventoryMovement.Commands.RegisterEntry
 {
-    public class RegisterEntryCommand : IRequest<RegisterEntryDTO>
+    public class RegisterEntryCommand : MovementRequestDTO, IRequest<RegisterMovementDTO>
     {
-        [SwaggerParameter(Description = "Id del producto")]
-        [Required(ErrorMessage = "Debe ingresar el id del producto")]
-        public string ProductId { get; set; }
-
-        [SwaggerParameter(Description = "Cantidad a ingresar")]
-        [Required(ErrorMessage = "Debe ingresar la cantidad a ingresar")]
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser mayor que cero")]
-        public int Quantity { get; set; }
     }
 
-    public class RegisterEntryCommandHandler : IRequestHandler<RegisterEntryCommand, RegisterEntryDTO>
+    public class RegisterEntryCommandHandler : IRequestHandler<RegisterEntryCommand, RegisterMovementDTO>
     {
         private readonly IInventoryMovementRepository _movementRepository;
         private readonly IMapper _mapper;
@@ -31,19 +23,19 @@ namespace InventoryHub.Core.Application.Features.InventoryMovement.Commands.Regi
             _mapper = mapper;
         }
 
-        public async Task<RegisterEntryDTO> Handle(RegisterEntryCommand command, CancellationToken cancellationToken)
+        public async Task<RegisterMovementDTO> Handle(RegisterEntryCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                RegisterEntryDTO response = new();
+                RegisterMovementDTO response = new();
                 var valueToAdd = _mapper.Map<Domain.Entities.InventoryMovement>(command);
                 valueToAdd.Created = DateTime.UtcNow;
                 valueToAdd.CreatedBy = "DefaultUser";
 
                 await _movementRepository.RegisterEntryAsync(valueToAdd);
 
-                response = _mapper.Map<RegisterEntryDTO>(valueToAdd);
-                response.EntryDate = valueToAdd.Created;
+                response = _mapper.Map<RegisterMovementDTO>(valueToAdd);
+                response.MovementDate = valueToAdd.Created;
                 response.Status = "Exitoso";
                 response.Details = [new ErrorDetailsDTO { Code = "000", Message = "Se actualizó el inventario correctamente" }];
                 return response;
