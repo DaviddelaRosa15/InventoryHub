@@ -8,7 +8,9 @@ RETURNS TABLE (
     "Created" TIMESTAMP,
     "CreatedBy" TEXT,
     "LastModified" TIMESTAMP,
-    "LastModifiedBy" TEXT
+    "LastModifiedBy" TEXT,
+    "IsDeleted" BOOLEAN,
+    "DeletedAt" TIMESTAMP
 )
 LANGUAGE plpgsql
 AS $$
@@ -23,7 +25,10 @@ BEGIN
         "Created"::TIMESTAMP,          -- Cast explícito si la columna es TEXT
         "CreatedBy",
         "LastModified"::TIMESTAMP,     -- Cast explícito si la columna es TEXT
-        "LastModifiedBy"
-    FROM "Products";
+        "LastModifiedBy",
+        "IsDeleted",
+        "DeletedAt"::TIMESTAMP          -- Cast explícito si la columna es TEXT
+    FROM "Products"
+    WHERE "IsDeleted" = FALSE;
 END;
 $$;

@@ -10,7 +10,9 @@ RETURNS TABLE (
     "Created" TIMESTAMP,
     "CreatedBy" TEXT,
     "LastModified" TIMESTAMP,
-    "LastModifiedBy" TEXT
+    "LastModifiedBy" TEXT,
+    "IsDeleted" BOOLEAN,
+    "DeletedAt" TIMESTAMP
 )
 LANGUAGE plpgsql
 AS $$
@@ -24,9 +26,11 @@ BEGIN
         "MinimumStock" INT,
         "Created"::TIMESTAMP,          -- Cast explícito si la columna es TEXT
         "CreatedBy",
-        "LastModified"::TIMESTAMP,     -- Cast explícito si la columna es TEXT
-        "LastModifiedBy"
+        "LastModified"::TIMESTAMP,          -- Cast explícito si la columna es TEXT
+        "LastModifiedBy",
+        "IsDeleted",
+        "DeletedAt"::TIMESTAMP          -- Cast explícito si la columna es TEXT
     FROM "Products"
-    WHERE "Id" = p_id;
+    WHERE "Id" = p_id AND "IsDeleted" = FALSE;
 END;
 $$;

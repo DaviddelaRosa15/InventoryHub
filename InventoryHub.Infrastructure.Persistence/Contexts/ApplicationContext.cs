@@ -77,19 +77,24 @@ namespace InventoryHub.Infrastructure.Persistence.Contexts
                 .HasOne(im => im.Product)
                 .WithMany(p => p.InventoryMovements)
                 .HasForeignKey(im => im.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<InventoryMovement>()
                 .HasOne(im => im.MovementType)
                 .WithMany(mt => mt.InventoryMovements)
                 .HasForeignKey(im => im.MovementTypeId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region Property configurations
             modelBuilder.Entity<Product>().HasIndex(i => i.Name);
             modelBuilder.Entity<MovementType>().HasIndex(i => i.Name);
             modelBuilder.Entity<InventoryMovement>().HasIndex(i => i.ProductId);
+
+            modelBuilder.Entity<Inventory>().HasIndex(i => i.IsDeleted);
+            modelBuilder.Entity<InventoryMovement>().HasIndex(i => i.IsDeleted);
+            modelBuilder.Entity<MovementType>().HasIndex(i => i.IsDeleted);
+            modelBuilder.Entity<Product>().HasIndex(i => i.IsDeleted);
             #endregion
         }
 
