@@ -18,8 +18,8 @@ namespace InventoryHub.Infrastructure.Persistence.Repositories
             using var dbContext = _dbContext.CreateDbContext();
 
             await dbContext.Database.ExecuteSqlRawAsync(
-                "CALL sp_product_create({0}, {1}, {2}, {3}, {4}, {5})",
-                product.Id, product.Name, product.Description, product.SalePrice, product.MinimumStock, product.CreatedBy);
+                "CALL sp_product_create({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                product.Id, product.Name, product.Code, product.Description, product.SalePrice, product.MinimumStock, product.CreatedBy);
         }
 
         public async Task UpdateAsync(Product product)
@@ -27,8 +27,8 @@ namespace InventoryHub.Infrastructure.Persistence.Repositories
             using var dbContext = _dbContext.CreateDbContext();
 
             await dbContext.Database.ExecuteSqlRawAsync(
-                "CALL sp_product_update({0}, {1}, {2}, {3}, {4}, {5})",
-                product.Id, product.Name, product.Description, product.SalePrice, product.MinimumStock, product.LastModifiedBy);
+                "CALL sp_product_update({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                product.Id, product.Name, product.Code, product.Description, product.SalePrice, product.MinimumStock, product.LastModifiedBy);
         }
 
         public async Task DeleteAsync(string id)
@@ -55,6 +55,15 @@ namespace InventoryHub.Infrastructure.Persistence.Repositories
             return await dbContext.Products
                 .FromSqlRaw("SELECT * FROM fn_product_get_all()")
                 .ToListAsync();
+        }
+
+        public async Task<Product?> GetByCodeAsync(string code)
+        {
+            using var dbContext = _dbContext.CreateDbContext();
+
+            return await dbContext.Products
+                .FromSqlRaw("SELECT * FROM fn_product_get_by_code({0})", code)
+                .FirstOrDefaultAsync();
         }
     }
 }

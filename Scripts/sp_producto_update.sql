@@ -1,6 +1,7 @@
 CREATE OR REPLACE PROCEDURE sp_product_update(
     p_id TEXT,
     p_name TEXT,
+    p_code TEXT,
     p_description TEXT,
     p_saleprice NUMERIC,
     p_minimumstock INT,
@@ -12,6 +13,7 @@ BEGIN
     UPDATE "Products"
     SET
         "Name" = p_name,
+        "Code" = p_code,
         "Description" = p_description,
         "SalePrice" = p_saleprice,
         "MinimumStock" = p_minimumstock,

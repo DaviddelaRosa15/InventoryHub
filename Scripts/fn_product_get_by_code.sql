@@ -1,5 +1,5 @@
-CREATE OR REPLACE FUNCTION fn_product_get_by_id(
-    p_id TEXT
+CREATE OR REPLACE FUNCTION fn_product_get_by_code(
+    p_code TEXT
 )
 RETURNS TABLE (
     "Id" TEXT,
@@ -33,6 +33,6 @@ BEGIN
         "IsDeleted",
         "DeletedAt"::TIMESTAMP          -- Cast explícito si la columna es TEXT
     FROM "Products"
-    WHERE "Id" = p_id AND "IsDeleted" = FALSE;
+    WHERE "Code" = p_code;
 END;
 $$;

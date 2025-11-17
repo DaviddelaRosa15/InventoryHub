@@ -13,6 +13,18 @@ VALUES
 
 --Practica 6
 
+-- Agregar la columna 'Code' a la tabla Products, no nula, valor por defecto ''
+ALTER TABLE "Products"
+    ADD COLUMN "Code" TEXT NOT NULL DEFAULT '';
+
+-- Poner códigos únicos temporales para evitar duplicados
+UPDATE "Products"
+SET "Code" = 'TEMP_' || "Id"
+WHERE "Code" = '';
+
+-- Crear índice único sobre la columna Code
+CREATE UNIQUE INDEX "IX_Products_Code" ON "Products" ("Code");
+
 -- Agregar IsDeleted y DeletedAt a las 4 tablas del diagrama
 ALTER TABLE "InventoryMovements"
     ADD COLUMN "IsDeleted" BOOLEAN NOT NULL DEFAULT FALSE,

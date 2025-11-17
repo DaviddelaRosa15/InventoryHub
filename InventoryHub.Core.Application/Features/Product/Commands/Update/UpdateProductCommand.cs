@@ -19,6 +19,10 @@ namespace InventoryHub.Core.Application.Features.Product.Command.Update
         [Required(ErrorMessage = "Debe ingresar el nombre")]
         public string Name { get; set; }
 
+        [SwaggerParameter(Description = "Código del producto")]
+        [Required(ErrorMessage = "Debe ingresar el código")]
+        public string Code { get; set; }
+
         [SwaggerParameter(Description = "Descripción")]
         public string? Description { get; set; }
 
@@ -54,8 +58,16 @@ namespace InventoryHub.Core.Application.Features.Product.Command.Update
 
                 if (valueToUpdate == null)
                     throw new Exception(ErrorMessages.NotFound);
+                
+                if(valueToUpdate.Code != command.Code)
+                {
+                    var productExists = await _productRepository.GetByCodeAsync(command.Code);
+                    if (productExists != null)
+                        throw new Exception($"Ya existe un producto con el código {command.Code}");
+                }
 
                 valueToUpdate.Name = command.Name;
+                valueToUpdate.Code = command.Code;
                 valueToUpdate.Description = command.Description;
                 valueToUpdate.SalePrice = command.SalePrice;
                 valueToUpdate.MinimumStock = command.MinimumStock;

@@ -2,6 +2,7 @@ CREATE OR REPLACE FUNCTION fn_product_get_all()
 RETURNS TABLE (
     "Id" STRING,
     "Name" TEXT,
+    "Code" TEXT,
     "Description" TEXT,
     "SalePrice" NUMERIC,
     "MinimumStock" INT,
@@ -19,6 +20,7 @@ BEGIN
     SELECT
         "Id",
         "Name",
+        "Code",
         "Description",
         "SalePrice",
         "MinimumStock" INT,

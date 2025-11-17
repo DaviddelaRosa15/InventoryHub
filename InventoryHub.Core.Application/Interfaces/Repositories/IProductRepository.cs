@@ -9,5 +9,6 @@ namespace InventoryHub.Core.Application.Interfaces.Repositories
         Task DeleteAsync(string id);
         Task<Product?> GetByIdAsync(string id);
         Task<List<Product>> GetAllAsync();
+        Task<Product?> GetByCodeAsync(string code);
     }
 }

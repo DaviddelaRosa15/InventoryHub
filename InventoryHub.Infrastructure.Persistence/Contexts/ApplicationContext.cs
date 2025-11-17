@@ -88,6 +88,7 @@ namespace InventoryHub.Infrastructure.Persistence.Contexts
 
             #region Property configurations
             modelBuilder.Entity<Product>().HasIndex(i => i.Name);
+            modelBuilder.Entity<Product>().HasIndex(i => i.Code).IsUnique();
             modelBuilder.Entity<MovementType>().HasIndex(i => i.Name);
             modelBuilder.Entity<InventoryMovement>().HasIndex(i => i.ProductId);
 

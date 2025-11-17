@@ -10,6 +10,9 @@ namespace InventoryHub.Core.Application.Dtos.Product
         [SwaggerSchema(Description = "Nombre del producto")]
         public string Name { get; set; }
 
+        [SwaggerSchema(Description = "Código del producto")]
+        public string Code { get; set; }
+
         [SwaggerSchema(Description = "Descipción")]
         public string? Description { get; set; }
 
