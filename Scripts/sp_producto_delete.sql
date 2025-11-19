@@ -10,12 +10,5 @@ BEGIN
         "DeletedAt" = NOW(),
         "LastModified" = NOW()
     WHERE "Id" = p_id;
-
-    -- Marcar los inventarios asociados como eliminados
-    UPDATE "Inventories"
-    SET "IsDeleted" = TRUE,
-        "DeletedAt" = NOW(),
-        "LastModified" = NOW()
-    WHERE "ProductId" = p_id;
 END;
 $$;

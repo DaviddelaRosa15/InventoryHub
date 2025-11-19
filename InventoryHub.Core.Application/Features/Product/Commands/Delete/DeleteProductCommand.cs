@@ -19,11 +19,14 @@ namespace InventoryHub.Core.Application.Features.Product.Command.Delete
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, ProductDTO>
     {
         private readonly IProductRepository _productRepository;
+        private readonly IInventoryRepository _inventoryRepository;
         private readonly IMapper _mapper;
 
-        public DeleteProductCommandHandler(IProductRepository productRepository, IMapper mapper)
+        public DeleteProductCommandHandler(IProductRepository productRepository, IInventoryRepository inventoryRepository,
+            IMapper mapper)
         {
             _productRepository = productRepository;
+            _inventoryRepository = inventoryRepository;
             _mapper = mapper;
         }
 
@@ -36,6 +39,10 @@ namespace InventoryHub.Core.Application.Features.Product.Command.Delete
 
                 if (valueToDelete == null)
                     throw new Exception(ErrorMessages.NotFound);
+
+                var relatedInventory = await _inventoryRepository.GetByProductIdAsync(valueToDelete.Id);
+                if (relatedInventory != null)
+                    throw new Exception("No se puede eliminar el producto porque está asociado a un inventario");
 
                 await _productRepository.DeleteAsync(valueToDelete.Id);
 

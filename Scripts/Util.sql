@@ -65,3 +65,29 @@ ADD CONSTRAINT "FK_InventoryMovements_Products_ProductId"
     FOREIGN KEY ("ProductId")
     REFERENCES "Products"("Id")
     ON DELETE NO ACTION;
+
+-- Practica 7
+
+-- Eliminar la constraint anterior
+ALTER TABLE "InventoryMovements" DROP CONSTRAINT "FK_InventoryMovements_MovementTypes_MovementTypeId";
+ALTER TABLE "InventoryMovements" DROP CONSTRAINT "FK_InventoryMovements_Products_ProductId";
+ALTER TABLE "Inventories" DROP CONSTRAINT "FK_Inventories_Products_ProductId";
+
+-- Crear la nueva constraint con ON DELETE RESTRICT
+ALTER TABLE "InventoryMovements"
+ADD CONSTRAINT "FK_InventoryMovements_MovementTypes_MovementTypeId"
+    FOREIGN KEY ("MovementTypeId")
+    REFERENCES "MovementTypes"("Id")
+    ON DELETE RESTRICT;
+
+ALTER TABLE "InventoryMovements"
+ADD CONSTRAINT "FK_InventoryMovements_Products_ProductId"
+    FOREIGN KEY ("ProductId")
+    REFERENCES "Products"("Id")
+    ON DELETE RESTRICT;
+
+ALTER TABLE "Inventories"
+ADD CONSTRAINT "FK_Inventories_Products_ProductId"
+    FOREIGN KEY ("ProductId")
+    REFERENCES "Products"("Id")
+    ON DELETE RESTRICT;
