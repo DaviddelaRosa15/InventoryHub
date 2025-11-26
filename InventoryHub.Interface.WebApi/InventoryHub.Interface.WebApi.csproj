@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InventoryHub.Core.Application\InventoryHub.Core.Application.csproj" />
     <ProjectReference Include="..\InventoryHub.Core.Domain\InventoryHub.Core.Domain.csproj" />
+    <ProjectReference Include="..\InventoryHub.Infrastructure.Identity\InventoryHub.Infrastructure.Identity.csproj" />
     <ProjectReference Include="..\InventoryHub.Infrastructure.Persistence\InventoryHub.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 

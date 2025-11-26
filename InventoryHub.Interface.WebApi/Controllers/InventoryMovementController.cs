@@ -5,11 +5,13 @@ using InventoryHub.Core.Application.Features.InventoryMovement.Commands.Register
 using InventoryHub.Core.Application.Features.InventoryMovement.Commands.RegisterExit;
 using InventoryHub.Core.Application.Helpers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace InventoryHub.Interface.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/inventorymovement")]
     [SwaggerTag("Movimientos de inventario")]

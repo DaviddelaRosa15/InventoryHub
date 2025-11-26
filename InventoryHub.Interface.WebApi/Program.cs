@@ -1,6 +1,7 @@
 using InventoryHub.Core.Application;
 using InventoryHub.Core.Application.Constants;
 using InventoryHub.Core.Application.Dtos.Common;
+using InventoryHub.Infrastructure.Identity;
 using InventoryHub.Infrastructure.Persistence;
 using InventoryHub.Interface.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddLogging();
 builder.Services.AddApplicationLayer(builder.Configuration);
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+builder.Services.AddIdentityInfrastructure(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

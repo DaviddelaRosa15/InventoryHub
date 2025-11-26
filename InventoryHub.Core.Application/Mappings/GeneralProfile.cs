@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using InventoryHub.Core.Application.Dtos.Auth;
 using InventoryHub.Core.Application.Dtos.InventoryMovement;
 using InventoryHub.Core.Application.Dtos.Product;
+using InventoryHub.Core.Application.Features.Auth.Commands.Authenticate;
 using InventoryHub.Core.Application.Features.InventoryMovement.Commands.RegisterEntry;
 using InventoryHub.Core.Application.Features.InventoryMovement.Commands.RegisterExit;
 using InventoryHub.Core.Application.Features.Product.Command.Add;
@@ -12,6 +14,11 @@ namespace InventoryHub.Core.Application.Mappings
 	{
 		public GeneralProfile()
 		{
+            #region Auth
+            CreateMap<AuthenticationRequest, AuthenticateCommand>()
+                .ReverseMap();
+            #endregion
+
             #region Product
             CreateMap<Product, ProductResponseDTO>()
                 .ReverseMap()

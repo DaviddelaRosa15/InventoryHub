@@ -10,9 +10,11 @@ using InventoryHub.Core.Application.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryHub.Interface.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/product")]
     [SwaggerTag("Manejo de productos")]
