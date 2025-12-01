@@ -11,6 +11,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Microsoft.AspNetCore.Authorization;
+using InventoryHub.Core.Application.Enums;
 
 namespace InventoryHub.Interface.WebApi.Controllers
 {
@@ -155,6 +156,7 @@ namespace InventoryHub.Interface.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         [SwaggerOperation(
            Summary = "Eliminar un producto",
@@ -163,6 +165,7 @@ namespace InventoryHub.Interface.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorDTO))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorDTO))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ErrorDTO))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorDTO))]
         public async Task<IActionResult> DeleteProducts([FromRoute] string id)
         {
